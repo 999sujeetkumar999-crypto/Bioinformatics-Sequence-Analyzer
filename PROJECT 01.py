@@ -50,5 +50,7 @@ valid_bases = set("ATGC")
 if set(sequence).issubset(valid_bases):
       print("Valid DNA Sequence")
 else:
-      print("Invalid DNA Sequence")      
-    
+      print("Invalid DNA Sequence")   
+
+      
+     
