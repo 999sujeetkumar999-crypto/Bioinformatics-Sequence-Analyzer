@@ -1,59 +1,64 @@
-dna = input("Enetr DNA Sequence: ").upper()
+from Bio.Seq import Seq
+
+
+
+dna = input("Enter DNA Sequence: ").upper().strip()
 
 valid_bases = set("ATGC")
-if set(dna).issubset(valid_bases):
 
-    print("\n=======DNA TO PROTEIN TRANSLATION=======")
 
-    codon_table = {
-        "TTA": "F", "TTC": "F",
-        "TTA": "L", "TTG": "L",
-        "CTT": "L", "CTC": "L",
-        "CTA": "L", "CTG": "L",
-        "ATT": "I", "ATC": "I",
-        "ATA": "I", "ATG": "M",
-        "GTT": "V", "GTC": "V",
-        "GTA": "V", "GTG": "V",
-        "TCT": "S", "TCC": "S",
-        "TCA": "S", "TCG": "S",
-        "CCT": "P", "CCC": "P",
-        "CCA": "P", "CCG": "P",
-        "ACT": "T", "ACC": "T",
-        "ACA": "T", "ACG": "T",
-        "GCT": "A", "GCC": "A",
-        "GCA": "A", "GCG": "A",
-        "TAT": "Y", "TAC": "Y",
-        "TAA": "*", "TAG": "*",
-        "CAT": "H", "CAC": "H",
-        "CAA": "Q", "CAG": "Q",
-        "AAT": "N", "AAC": "N",
-        "AAA": "K", "AAG": "K",
-        "GAT": "D", "GAC": "D",
-        "GAA": "E", "GAG": "E",
-        "TGT": "C", "TGC": "C",
-        "TGA": "*", "TGG": "W",
-        "CGT": "R", "CGC": "R",
-        "CGA": "R", "CGG": "R",
-        "AGT": "S", "AGC": "S",
-        "AGA": "R", "AGG": "R",
-        "GGT": "G", "GGC": "G",
-        "GGA": "G", "GGG": "G"
+if not set(dna).issubset(valid_bases):
+    print("Invalid DNA Sequence!")
+    exit()
 
-    }
+print("\n===== DNA TO PROTEIN TRANSLATION =====")
 
-    protein = ""
-    for i in range(0,len(dna) -2,3 ):
-        codon = dna[i:i+3]
-        amino_acid = codon_table[codon]
 
-        if amino_acid == "*":
-            break 
 
-        protein += amino_acid
+sequence = Seq(dna)
 
-        print("DNA SEQUENCE:",dna)
-        print("PROTEIN SEQUENCE:", protein)
-        print("PROTEIN LENGTH:", len(protein))
+protein = sequence.translate(to_stop=True)
 
-    else:
-        print("Invalid DNA Sequence!")
+print("DNA Sequence:", dna)
+print("Protein Sequence:", protein)
+print("Protein Length:", len(protein))
+
+
+
+print("\n===== READING FRAMES =====")
+
+for frame in range(3):
+
+    frame_dna = dna[frame:]
+
+    # Remove incomplete codon
+    usable_length = len(frame_dna) - (len(frame_dna) % 3)
+    frame_dna = frame_dna[:usable_length]
+
+    frame_protein = Seq(frame_dna).translate(to_stop=True)
+
+    print("\nReading Frame +", frame + 1)
+    print("DNA:", frame_dna)
+    print("Protein:", frame_protein)
+
+
+
+
+print("\n===== ORF ANALYSIS =====")
+
+start_position = dna.find("ATG")
+
+if start_position != -1:
+
+    orf_dna = dna[start_position:]
+
+    orf_protein = Seq(orf_dna).translate(to_stop=True)
+
+    print("Start Codon ATG found at position:", start_position)
+    print("ORF DNA:", orf_dna)
+    print("ORF Protein:", orf_protein)
+    print("ORF Protein Length:", len(orf_protein))
+
+else:
+
+    print("No start codon ATG found.")
