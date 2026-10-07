@@ -43,14 +43,14 @@ else:
 
     print("Hamming Distance:", hamming_distance)
 
-    # Global alignment
+    
     global_alignment = pairwise2.align.globalxx(seq1, seq2)
 
     print("\n===== GLOBAL ALIGNMENT =====")
 
     print(pairwise2.format_alignment(*global_alignment[0]))
 
-    # Local alignment
+
     local_alignment = pairwise2.align.localxx(seq1, seq2)
 
     print("\n===== LOCAL ALIGNMENT =====")

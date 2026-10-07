@@ -6,12 +6,12 @@ mutated = input("Enter mutated DNA sequence: ").upper().strip()
 
 valid_bases = set("ATGC")
 
-# Validate original sequence
+
 if not set(original).issubset(valid_bases):
     print("Invalid original DNA sequence!")
     exit()
 
-# Validate mutated sequence
+
 if not set(mutated).issubset(valid_bases):
     print("Invalid mutated DNA sequence!")
     exit()
