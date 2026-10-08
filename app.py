@@ -11,7 +11,7 @@ import numpy as np
 # ============================================================
 
 st.set_page_config(
-    page_title="Bioinformatics Sequence Analyzer",
+    page_title="BIOINFORMATICS SEQUENCE ANALYZER",
     page_icon="🧬",
     layout="wide"
 
@@ -27,29 +27,290 @@ st.image("assets/gc_chart.png.png", use_container_width=True)
 # CUSTOM CSS
 # ============================================================
 
+# ============================================================
+# PREMIUM BIOINFORMATICS UI
+# ============================================================
+
 st.markdown("""
+
 <style>
 
-.main {
-    padding-top: 1rem;
+[data-testid="stImage"] img {
+    width: 100%;
+    height: auto !important;
+    object-fit: contain !important;
+}
+/* Main Background */
+.stApp {
+     
+    background: linear-gradient(135deg, #020617, #0f172a, #172554);
+    color: white;
+}
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0, 229, 255, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(124, 58, 237, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #050816 0%,
+            #08111f 50%,
+            #050816 100%
+        );
+
+    color: #f1f5f9;
 }
 
+
+/* Main Content */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1250px;
+}
+
+
+/* Main Heading */
 .big-title {
-    font-size: 45px;
-    font-weight: 800;
+    font-size: 52px;
+    font-weight: 900;
     text-align: center;
+    letter-spacing: -1px;
+
+    background: linear-gradient(
+        90deg,
+        #22d3ee,
+        #60a5fa,
+        #a78bfa
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    margin-bottom: 5px;
 }
 
+
+/* Subtitle */
 .subtitle {
     text-align: center;
+    color: #94a3b8;
     font-size: 18px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
-.result-box {
-    padding: 20px;
-    border-radius: 15px;
-    border: 1px solid #444;
+
+/* Section Headings */
+h1, h2, h3 {
+    color: #e2e8f0 !important;
+    font-weight: 750 !important;
+}
+
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+
+    background:
+        linear-gradient(
+            180deg,
+            #070b17,
+            #0b1220
+        );
+
+    border-right: 1px solid
+        rgba(148, 163, 184, 0.12);
+}
+
+
+/* Sidebar text */
+section[data-testid="stSidebar"] * {
+    color: #e2e8f0;
+}
+
+
+/* Metric Cards */
+div[data-testid="stMetric"] {
+
+    background:
+        rgba(15, 23, 42, 0.72);
+
+    border: 1px solid
+        rgba(56, 189, 248, 0.18);
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* Metric Number */
+div[data-testid="stMetricValue"] {
+    color: #67e8f9;
+    font-weight: 800;
+}
+
+
+/* Buttons */
+.stButton > button {
+
+    width: 100%;
+
+    border-radius: 12px;
+
+    border: 1px solid
+        rgba(34, 211, 238, 0.35);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8, 145, 178, 0.25),
+            rgba(124, 58, 237, 0.25)
+        );
+
+    color: #f8fafc;
+
+    font-weight: 700;
+
+    padding: 0.65rem 1rem;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Button Hover */
+.stButton > button:hover {
+
+    border-color: #22d3ee;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(8, 145, 178, 0.45),
+            rgba(124, 58, 237, 0.45)
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(34, 211, 238, 0.15);
+}
+
+
+/* Text Area */
+textarea {
+
+    background-color:
+        rgba(15, 23, 42, 0.75) !important;
+
+    color: #f8fafc !important;
+
+    border: 1px solid
+        rgba(148, 163, 184, 0.20) !important;
+
+    border-radius: 14px !important;
+}
+
+
+/* Text Input */
+input {
+
+    background-color:
+        rgba(15, 23, 42, 0.75) !important;
+
+    color: #f8fafc !important;
+}
+
+
+/* Selectbox */
+div[data-baseweb="select"] > div {
+
+    background-color:
+        rgba(15, 23, 42, 0.80) !important;
+
+    border-radius: 12px !important;
+}
+
+
+/* File uploader */
+section[data-testid="stFileUploader"] {
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    border: 1px dashed
+        rgba(34, 211, 238, 0.35);
+
+    border-radius: 16px;
+
+    padding: 10px;
+}
+
+
+/* Dataframes */
+div[data-testid="stDataFrame"] {
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    border: 1px solid
+        rgba(148, 163, 184, 0.15);
+}
+
+
+/* Alerts */
+div[data-testid="stAlert"] {
+
+    border-radius: 14px;
+}
+
+
+/* Images */
+img {
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* Divider */
+hr {
+
+    border-color:
+        rgba(148, 163, 184, 0.12);
+}
+
+
+/* Code Blocks */
+code {
+
+    border-radius: 10px;
+}
+
+
+/* Footer */
+.footer {
+
+    text-align: center;
+
+    color: #64748b;
+
+    padding: 30px;
+
+    font-size: 14px;
 }
 
 </style>
@@ -348,7 +609,7 @@ if menu == "🏠 Home":
     )
 
     st.success(
-        "Day 1–13 Bioinformatics Project Dashboard"
+        "Day 1–15 Bioinformatics Project Dashboard"
     )
 
     col1, col2, col3 = st.columns(3)
@@ -1607,6 +1868,61 @@ elif menu == "📊 Advanced Visualization":
 # FOOTER
 # ============================================================
 
+
+# ============================================================
+# ABOUT THE DEVELOPER
+# ============================================================
+
+st.markdown("---")
+
+st.markdown("""
+<div style="
+    background: linear-gradient(135deg, rgba(15,23,42,0.9), rgba(30,41,59,0.8));
+    padding: 35px;
+    border-radius: 22px;
+    border: 1px solid rgba(34,211,238,0.25);
+    text-align: center;
+    margin-top: 40px;
+">
+
+<h2 style="color:#67e8f9; margin-bottom:5px;">
+👨‍💻 About the Developer
+</h2>
+
+<h1 style="margin-bottom:10px;">
+Hi, I'm Sujeet Kumar 👋
+</h1>
+
+<p style="font-size:17px; color:#cbd5e1; line-height:1.7;">
+I'm a Biotechnology student passionate about 
+<b>Bioinformatics, Computational Biology, Programming</b>
+and <b>Biological Data Analysis</b>.
+</p>
+
+<p style="font-size:16px; color:#94a3b8;">
+I built this Bioinformatics Sequence Analyzer to combine
+biology with Python and create a practical tool for
+sequence analysis and visualization.
+</p>
+
+<br>
+
+<p style="font-size:17px;">
+🧬 Bioinformatics &nbsp;&nbsp; | &nbsp;&nbsp;
+🔬 Computational Biology &nbsp;&nbsp; | &nbsp;&nbsp;
+💻 Python &nbsp;&nbsp; | &nbsp;&nbsp;
+📊 Data Analysis
+</p>
+
+<br>
+
+<p style="color:#67e8f9; font-size:18px; font-weight:600;">
+From Biological Data → Computational Insights.
+</p>
+
+</div>
+""", unsafe_allow_html=True)
+
 st.divider()
 
 st.markdown(
@@ -1615,7 +1931,7 @@ st.markdown(
 
     🧬 **Bioinformatics Sequence Analyzer**
 
-    Day 1–13 Learning & Development Project
+    Day 1–15 Learning & Development Project
 
     Built with **Python + Streamlit + Sujeet'MIND**
 
